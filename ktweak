@@ -41,12 +41,7 @@ _write() {
 
 # Background fork write function
 write() {
-	if [[ "$SYNC" -eq 1 ]]
-	then
-		_write "$@"
-	else
-		_write "$@" &
-	fi
+	[[ "$SYNC" -eq 1 ]] && _write "$@" || _write "$@" &
 }
 
 # Setup ZRAM to half of the available RAM (sync)
